@@ -669,68 +669,213 @@ h1 {
 }
 
 /* Responzivní design */
-@media (max-width: 1200px) {
+/* Tablet LANDSCAPE (na šířku) - 769px až 1200px */
+@media (min-width: 769px) and (max-width: 1200px) and (orientation: landscape) {
+    body {
+        padding: 5px;
+    }
+
+    h1 {
+        font-size: 1.3rem;
+        padding: 10px 20px;
+        margin-bottom: 10px;
+    }
+
+    .top-right-controls {
+        top: 5px;
+        right: 5px;
+        gap: 4px;
+        flex-wrap: wrap;
+    }
+
+    .control-button {
+        padding: 5px 10px;
+        font-size: 0.75rem;
+    }
+
+    .bottom-right-container {
+        max-width: 280px;
+        bottom: 5px;
+        right: 5px;
+    }
+
+    .new-year-message {
+        font-size: 0.75rem;
+        line-height: 1.3;
+    }
+
+    .logo-bottom-right {
+        width: 120px;
+    }
+
     .puzzle-grid {
-        grid-template-columns: repeat(4, 240px);
-        grid-template-rows: repeat(2, 178px);
+        grid-template-columns: repeat(4, 170px);
+        grid-template-rows: repeat(2, 126px);
+        gap: 2px;
+        padding: 12px;
     }
 
     .puzzle-piece {
-        width: 120px;
-        height: 89px;
-        background-size: 480px 178px;
+        width: 85px;
+        height: 63px;
+        background-size: 340px 126px;
     }
 
     .puzzle-slot .puzzle-piece {
-        width: 240px !important;
-        height: 178px !important;
-        background-size: 960px 356px !important;
+        width: 170px !important;
+        height: 126px !important;
+        background-size: 680px 252px !important;
+    }
+
+    /* Malé dílky v seznamu - tablet landscape */
+    .puzzle-piece[data-piece-id="1"] {
+        background-position: -85px 0;
+    }
+    .puzzle-piece[data-piece-id="2"] {
+        background-position: -170px 0;
+    }
+    .puzzle-piece[data-piece-id="3"] {
+        background-position: -255px 0;
+    }
+    .puzzle-piece[data-piece-id="4"] {
+        background-position: 0 -63px;
+    }
+    .puzzle-piece[data-piece-id="5"] {
+        background-position: -85px -63px;
+    }
+    .puzzle-piece[data-piece-id="6"] {
+        background-position: -170px -63px;
+    }
+    .puzzle-piece[data-piece-id="7"] {
+        background-position: -255px -63px;
+    }
+
+    /* Velké dílky ve slotu - tablet landscape */
+    .puzzle-slot .puzzle-piece[data-piece-id="1"] {
+        background-position: -170px 0;
+    }
+    .puzzle-slot .puzzle-piece[data-piece-id="2"] {
+        background-position: -340px 0;
+    }
+    .puzzle-slot .puzzle-piece[data-piece-id="3"] {
+        background-position: -510px 0;
+    }
+    .puzzle-slot .puzzle-piece[data-piece-id="4"] {
+        background-position: 0 -126px;
+    }
+    .puzzle-slot .puzzle-piece[data-piece-id="5"] {
+        background-position: -170px -126px;
+    }
+    .puzzle-slot .puzzle-piece[data-piece-id="6"] {
+        background-position: -340px -126px;
+    }
+    .puzzle-slot .puzzle-piece[data-piece-id="7"] {
+        background-position: -510px -126px;
+    }
+}
+
+/* Tablet PORTRAIT (na výšku) - 769px až 1200px */
+@media (min-width: 769px) and (max-width: 1200px) and (orientation: portrait) {
+    body {
+        padding: 5px;
+    }
+
+    h1 {
+        font-size: 1.2rem;
+        padding: 8px 15px;
+        margin-bottom: 10px;
+    }
+
+    .top-right-controls {
+        top: 5px;
+        right: 5px;
+        gap: 4px;
+        flex-wrap: wrap;
+    }
+
+    .control-button {
+        padding: 5px 10px;
+        font-size: 0.7rem;
+    }
+
+    .bottom-right-container {
+        max-width: 250px;
+        bottom: 5px;
+        right: 5px;
+    }
+
+    .new-year-message {
+        font-size: 0.75rem;
+        line-height: 1.3;
+    }
+
+    .logo-bottom-right {
+        width: 100px;
+    }
+
+    .puzzle-grid {
+        grid-template-columns: repeat(4, 140px);
+        grid-template-rows: repeat(2, 104px);
+        gap: 2px;
+        padding: 10px;
+    }
+
+    .puzzle-piece {
+        width: 70px;
+        height: 52px;
+        background-size: 280px 104px;
+    }
+
+    .puzzle-slot .puzzle-piece {
+        width: 140px !important;
+        height: 104px !important;
+        background-size: 560px 208px !important;
     }
 
     /* Malé dílky v seznamu - tablet */
     .puzzle-piece[data-piece-id="1"] {
-        background-position: -120px 0;
+        background-position: -70px 0;
     }
     .puzzle-piece[data-piece-id="2"] {
-        background-position: -240px 0;
+        background-position: -140px 0;
     }
     .puzzle-piece[data-piece-id="3"] {
-        background-position: -360px 0;
+        background-position: -210px 0;
     }
     .puzzle-piece[data-piece-id="4"] {
-        background-position: 0 -89px;
+        background-position: 0 -52px;
     }
     .puzzle-piece[data-piece-id="5"] {
-        background-position: -120px -89px;
+        background-position: -70px -52px;
     }
     .puzzle-piece[data-piece-id="6"] {
-        background-position: -240px -89px;
+        background-position: -140px -52px;
     }
     .puzzle-piece[data-piece-id="7"] {
-        background-position: -360px -89px;
+        background-position: -210px -52px;
     }
 
     /* Velké dílky ve slotu - tablet */
     .puzzle-slot .puzzle-piece[data-piece-id="1"] {
-        background-position: -240px 0;
+        background-position: -140px 0;
     }
     .puzzle-slot .puzzle-piece[data-piece-id="2"] {
-        background-position: -480px 0;
+        background-position: -280px 0;
     }
     .puzzle-slot .puzzle-piece[data-piece-id="3"] {
-        background-position: -720px 0;
+        background-position: -420px 0;
     }
     .puzzle-slot .puzzle-piece[data-piece-id="4"] {
-        background-position: 0 -178px;
+        background-position: 0 -104px;
     }
     .puzzle-slot .puzzle-piece[data-piece-id="5"] {
-        background-position: -240px -178px;
+        background-position: -140px -104px;
     }
     .puzzle-slot .puzzle-piece[data-piece-id="6"] {
-        background-position: -480px -178px;
+        background-position: -280px -104px;
     }
     .puzzle-slot .puzzle-piece[data-piece-id="7"] {
-        background-position: -720px -178px;
+        background-position: -420px -104px;
     }
 }
 
