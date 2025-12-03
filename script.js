@@ -344,11 +344,14 @@ function handleTouchStart(e) {
     touchClone.style.opacity = '0.8';
     touchClone.style.width = this.offsetWidth + 'px';
     touchClone.style.height = this.offsetHeight + 'px';
+    touchClone.style.willChange = 'transform';
+    touchClone.style.transition = 'none';
     document.body.appendChild(touchClone);
 
     const touch = e.touches[0];
-    touchClone.style.left = (touch.clientX - this.offsetWidth / 2) + 'px';
-    touchClone.style.top = (touch.clientY - this.offsetHeight / 2) + 'px';
+    touchClone.style.transform = `translate(${touch.clientX - this.offsetWidth / 2}px, ${touch.clientY - this.offsetHeight / 2}px)`;
+    touchClone.style.left = '0';
+    touchClone.style.top = '0';
 }
 
 function handleTouchMove(e) {
@@ -357,10 +360,9 @@ function handleTouchMove(e) {
 
     const touch = e.touches[0];
 
-    // Posunout klon
+    // Posunout klon using transform for better performance
     if (touchClone) {
-        touchClone.style.left = (touch.clientX - touchClone.offsetWidth / 2) + 'px';
-        touchClone.style.top = (touch.clientY - touchClone.offsetHeight / 2) + 'px';
+        touchClone.style.transform = `translate(${touch.clientX - touchClone.offsetWidth / 2}px, ${touch.clientY - touchClone.offsetHeight / 2}px)`;
     }
 
     // Najít slot pod prstem
