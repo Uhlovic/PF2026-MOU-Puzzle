@@ -796,10 +796,10 @@ h1 {
     }
 
     .puzzle-piece {
-        width: 39px;
-        height: 29px;
+        width: 58px;
+        height: 43px;
         font-size: 0.6rem;
-        background-size: 156px 58px;
+        background-size: 232px 86px;
         border: 1px solid white;
     }
 
@@ -822,25 +822,25 @@ h1 {
 
     /* Malé dílky v seznamu - mobil */
     .puzzle-piece[data-piece-id="1"] {
-        background-position: -39px 0;
+        background-position: -58px 0;
     }
     .puzzle-piece[data-piece-id="2"] {
-        background-position: -78px 0;
+        background-position: -116px 0;
     }
     .puzzle-piece[data-piece-id="3"] {
-        background-position: -117px 0;
+        background-position: -174px 0;
     }
     .puzzle-piece[data-piece-id="4"] {
-        background-position: 0 -29px;
+        background-position: 0 -43px;
     }
     .puzzle-piece[data-piece-id="5"] {
-        background-position: -39px -29px;
+        background-position: -58px -43px;
     }
     .puzzle-piece[data-piece-id="6"] {
-        background-position: -78px -29px;
+        background-position: -116px -43px;
     }
     .puzzle-piece[data-piece-id="7"] {
-        background-position: -117px -29px;
+        background-position: -174px -43px;
     }
 
     /* Velké dílky ve slotu - mobil */
@@ -875,8 +875,9 @@ h1 {
     }
 
     .puzzle-pieces {
-        padding: 10px;
-        gap: 10px;
+        padding: 15px;
+        gap: 15px;
+        min-height: 100px;
     }
 
     .completion-content {

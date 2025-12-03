@@ -27,22 +27,26 @@ window.addEventListener('DOMContentLoaded', () => {
     initializeVisiblePieces();
 });
 
-// Inicializace - zobrazit pouze prvních 3 dílky
+// Inicializace - zobrazit pouze prvních 2-3 dílky (podle velikosti obrazovky)
 function initializeVisiblePieces() {
     const piecesArray = Array.from(puzzlePieces);
 
-    // Vytvořit pole indexů dílků k zobrazení (vybereme 3 náhodné)
+    // Zjistit počet dílků podle velikosti obrazovky
+    const isMobile = window.innerWidth <= 768;
+    const visibleCount = isMobile ? 2 : 3;
+
+    // Vytvořit pole indexů dílků k zobrazení
     const allIndices = Array.from({length: 8}, (_, i) => i);
     const visibleIndices = [];
 
-    // Náhodně vybrat 3 indexy
-    for (let i = 0; i < 3; i++) {
+    // Náhodně vybrat dílky
+    for (let i = 0; i < visibleCount; i++) {
         const randomIndex = Math.floor(Math.random() * allIndices.length);
         visibleIndices.push(allIndices[randomIndex]);
         allIndices.splice(randomIndex, 1);
     }
 
-    // Skrýt všechny kromě vybraných 3
+    // Skrýt všechny kromě vybraných
     piecesArray.forEach((piece, index) => {
         if (!visibleIndices.includes(index)) {
             piece.classList.add('hidden');
