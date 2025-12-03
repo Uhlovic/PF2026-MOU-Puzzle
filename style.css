@@ -43,14 +43,27 @@ body {
     z-index: 10;
 }
 
-.bottom-right-container {
+.bottom-left-container {
     position: fixed;
     bottom: 20px;
+    left: 20px;
+    z-index: 100;
+}
+
+.logo-bottom-left {
+    width: 160px;
+    height: auto;
+    opacity: 0.9;
+}
+
+.bottom-right-container {
+    position: fixed;
+    bottom: 160px;
     right: 20px;
     z-index: 100;
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: flex-start;
     gap: 15px;
     max-width: 380px;
 }
@@ -66,12 +79,6 @@ body {
 
 .new-year-message strong {
     font-weight: 600;
-}
-
-.logo-bottom-right {
-    width: 160px;
-    height: auto;
-    opacity: 0.9;
 }
 
 h1 {
@@ -139,6 +146,40 @@ h1 {
     gap: 30px;
     justify-content: center;
     align-items: center;
+    position: relative;
+}
+
+/* Nápis PF 2026 nad budovou */
+.pf-greeting {
+    position: absolute;
+    top: 0px;
+    left: 15%;
+    transform: translateX(-50%);
+    font-size: 4rem;
+    font-weight: 600;
+    color: #f04600;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.8s ease;
+    z-index: 50;
+}
+
+.pf-greeting.show {
+    opacity: 1;
+    visibility: visible;
+    animation: fadeInDown 1s ease-out;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
 }
 
 /* Puzzle mřížka 4x2 */
@@ -681,6 +722,11 @@ h1 {
         margin-bottom: 10px;
     }
 
+    .pf-greeting {
+        font-size: 2rem;
+        top: -35px;
+    }
+
     .top-right-controls {
         top: 5px;
         right: 5px;
@@ -704,7 +750,7 @@ h1 {
         line-height: 1.3;
     }
 
-    .logo-bottom-right {
+    .logo-bottom-left {
         width: 120px;
     }
 
@@ -786,6 +832,11 @@ h1 {
         margin-bottom: 10px;
     }
 
+    .pf-greeting {
+        font-size: 1.8rem;
+        top: -35px;
+    }
+
     .top-right-controls {
         top: 5px;
         right: 5px;
@@ -809,7 +860,7 @@ h1 {
         line-height: 1.3;
     }
 
-    .logo-bottom-right {
+    .logo-bottom-left {
         width: 100px;
     }
 
@@ -881,23 +932,30 @@ h1 {
 
 @media (max-width: 768px) {
     body {
-        padding: 10px;
+        padding: 5px;
     }
 
     h1 {
-        font-size: 1.5rem;
-        padding: 12px 20px;
+        font-size: 1.1rem;
+        padding: 8px 15px;
+        margin-bottom: 5px;
+    }
+
+    .pf-greeting {
+        font-size: 1.2rem;
+        top: 0px;
+        left: 10%;
     }
 
     .top-right-controls {
-        top: 10px;
-        right: 10px;
-        gap: 5px;
+        top: 5px;
+        right: 5px;
+        gap: 3px;
     }
 
     .control-button {
-        padding: 8px 15px;
-        font-size: 0.85rem;
+        padding: 5px 10px;
+        font-size: 0.7rem;
     }
 
     .help-content {
@@ -918,40 +976,46 @@ h1 {
         font-size: 1rem;
     }
 
+    .bottom-left-container {
+        bottom: 5px;
+        left: 5px;
+    }
+
+    .logo-bottom-left {
+        width: 70px;
+    }
+
     .bottom-right-container {
-        bottom: 10px;
-        right: 10px;
-        max-width: calc(100% - 20px);
+        bottom: 80px;
+        right: 5px;
+        max-width: 200px;
     }
 
     .new-year-message {
-        font-size: 0.75rem;
-        padding: 10px;
-    }
-
-    .logo-bottom-right {
-        width: 100px;
+        font-size: 0.6rem;
+        line-height: 1.2;
+        padding: 0;
     }
 
     .puzzle-grid {
-        grid-template-columns: repeat(4, 78px);
-        grid-template-rows: repeat(2, 58px);
+        grid-template-columns: repeat(4, 70px);
+        grid-template-rows: repeat(2, 52px);
         gap: 2px;
-        padding: 8px;
+        padding: 6px;
     }
 
     .puzzle-piece {
-        width: 58px;
-        height: 43px;
+        width: 52px;
+        height: 39px;
         font-size: 0.6rem;
-        background-size: 232px 86px;
+        background-size: 208px 78px;
         border: 1px solid white;
     }
 
     .puzzle-slot .puzzle-piece {
-        width: 78px !important;
-        height: 58px !important;
-        background-size: 312px 116px !important;
+        width: 70px !important;
+        height: 52px !important;
+        background-size: 280px 104px !important;
         border: 2px solid white !important;
     }
 
@@ -967,48 +1031,48 @@ h1 {
 
     /* Malé dílky v seznamu - mobil */
     .puzzle-piece[data-piece-id="1"] {
-        background-position: -58px 0;
+        background-position: -52px 0;
     }
     .puzzle-piece[data-piece-id="2"] {
-        background-position: -116px 0;
+        background-position: -104px 0;
     }
     .puzzle-piece[data-piece-id="3"] {
-        background-position: -174px 0;
+        background-position: -156px 0;
     }
     .puzzle-piece[data-piece-id="4"] {
-        background-position: 0 -43px;
+        background-position: 0 -39px;
     }
     .puzzle-piece[data-piece-id="5"] {
-        background-position: -58px -43px;
+        background-position: -52px -39px;
     }
     .puzzle-piece[data-piece-id="6"] {
-        background-position: -116px -43px;
+        background-position: -104px -39px;
     }
     .puzzle-piece[data-piece-id="7"] {
-        background-position: -174px -43px;
+        background-position: -156px -39px;
     }
 
     /* Velké dílky ve slotu - mobil */
     .puzzle-slot .puzzle-piece[data-piece-id="1"] {
-        background-position: -78px 0;
+        background-position: -70px 0;
     }
     .puzzle-slot .puzzle-piece[data-piece-id="2"] {
-        background-position: -156px 0;
+        background-position: -140px 0;
     }
     .puzzle-slot .puzzle-piece[data-piece-id="3"] {
-        background-position: -234px 0;
+        background-position: -210px 0;
     }
     .puzzle-slot .puzzle-piece[data-piece-id="4"] {
-        background-position: 0 -58px;
+        background-position: 0 -52px;
     }
     .puzzle-slot .puzzle-piece[data-piece-id="5"] {
-        background-position: -78px -58px;
+        background-position: -70px -52px;
     }
     .puzzle-slot .puzzle-piece[data-piece-id="6"] {
-        background-position: -156px -58px;
+        background-position: -140px -52px;
     }
     .puzzle-slot .puzzle-piece[data-piece-id="7"] {
-        background-position: -234px -58px;
+        background-position: -210px -52px;
     }
 
     .greeting-text {
@@ -1152,7 +1216,7 @@ h1 {
         font-size: 0.65rem;
     }
 
-    .logo-bottom-right {
+    .logo-bottom-left {
         width: 80px;
     }
 

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Simple Lottie Test</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 50px;
+            background: #222;
+            font-family: Arial;
+            color: white;
+        }
+        h1 { color: #4CAF50; }
+        .box {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Test Lottie Animací</h1>
+
+    <div class="box">
+        <h2 style="color: #333;">Digging Animation</h2>
+        <div id="lottie1" style="width: 400px; height: 400px;"></div>
+    </div>
+
+    <div class="box">
+        <h2 style="color: #333;">Truck Animation</h2>
+        <div id="lottie2" style="width: 400px; height: 400px;"></div>
+    </div>
+
+    <div class="box">
+        <h2 style="color: #333;">Maintenance Animation</h2>
+        <div id="lottie3" style="width: 400px; height: 400px;"></div>
+    </div>
+
+    <!-- Lottie Web Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+
+    <script>
+        console.log('Lottie loaded:', typeof lottie !== 'undefined');
+
+        // Animation 1 - Digging
+        try {
+            const anim1 = lottie.loadAnimation({
+                container: document.getElementById('lottie1'),
+                renderer: 'svg',
+                loop: true,
+                autoplay: true,
+                path: 'Digging.json'
+            });
+            console.log('Animation 1 (Digging) initialized');
+            anim1.addEventListener('data_ready', () => console.log('Digging: data ready'));
+            anim1.addEventListener('DOMLoaded', () => console.log('Digging: DOM loaded'));
+            anim1.addEventListener('error', (e) => console.error('Digging error:', e));
+        } catch(e) {
+            console.error('Failed to load animation 1:', e);
+        }
+
+        // Animation 2 - Truck
+        try {
+            const anim2 = lottie.loadAnimation({
+                container: document.getElementById('lottie2'),
+                renderer: 'svg',
+                loop: true,
+                autoplay: true,
+                path: 'Truck.json'
+            });
+            console.log('Animation 2 (Truck) initialized');
+        } catch(e) {
+            console.error('Failed to load animation 2:', e);
+        }
+
+        // Animation 3 - Maintenance
+        try {
+            const anim3 = lottie.loadAnimation({
+                container: document.getElementById('lottie3'),
+                renderer: 'svg',
+                loop: true,
+                autoplay: true,
+                path: 'UnderMaintenance.json'
+            });
+            console.log('Animation 3 (Maintenance) initialized');
+        } catch(e) {
+            console.error('Failed to load animation 3:', e);
+        }
+    </script>
+</body>
+</html>

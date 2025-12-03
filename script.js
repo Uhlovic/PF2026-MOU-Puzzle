@@ -213,6 +213,8 @@ function checkCompletion() {
             puzzlePiecesContainer.style.display = 'none';
             // Skrýt nadpis
             document.querySelector('h1').style.display = 'none';
+            // Zobrazit PF 2026 nápis
+            document.getElementById('pfGreeting').classList.add('show');
         }, 500);
 
         // Zobrazit gratulaci (po dokončení animace spojení + 1 sekunda navíc)
@@ -301,6 +303,9 @@ function resetGame() {
 
     // Zobrazit nadpis zpět
     document.querySelector('h1').style.display = '';
+
+    // Skrýt PF 2026 nápis
+    document.getElementById('pfGreeting').classList.remove('show');
 
     // Zamíchat znovu
     shufflePieces();
