@@ -344,6 +344,7 @@ function handleTouchStart(e) {
     touchOffset.y = pieceHeight / 2;
 
     // Vytvořit klon pro vizuální feedback
+    const touch = e.touches[0];
     touchClone = this.cloneNode(true);
     touchClone.style.position = 'fixed';
     touchClone.style.zIndex = '10000';
@@ -353,12 +354,10 @@ function handleTouchStart(e) {
     touchClone.style.height = pieceHeight + 'px';
     touchClone.style.willChange = 'transform';
     touchClone.style.transition = 'none';
-    touchClone.style.left = '0';
-    touchClone.style.top = '0';
+    // Nastavit přímo na správnou pozici místo 0,0
+    touchClone.style.left = (touch.clientX - touchOffset.x) + 'px';
+    touchClone.style.top = (touch.clientY - touchOffset.y) + 'px';
     document.body.appendChild(touchClone);
-
-    const touch = e.touches[0];
-    touchClone.style.transform = `translate(${touch.clientX - touchOffset.x}px, ${touch.clientY - touchOffset.y}px)`;
 }
 
 function handleTouchMove(e) {
@@ -367,9 +366,10 @@ function handleTouchMove(e) {
 
     const touch = e.touches[0];
 
-    // Posunout klon using transform for better performance
+    // Posunout klon
     if (touchClone) {
-        touchClone.style.transform = `translate(${touch.clientX - touchOffset.x}px, ${touch.clientY - touchOffset.y}px)`;
+        touchClone.style.left = (touch.clientX - touchOffset.x) + 'px';
+        touchClone.style.top = (touch.clientY - touchOffset.y) + 'px';
     }
 
     // Najít slot pod prstem

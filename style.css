@@ -943,8 +943,8 @@ h1 {
 
     .pf-greeting {
         font-size: 1.2rem;
-        top: 0px;
-        left: 10%;
+        top: -15px;
+        left: 30%;
     }
 
     .top-right-controls {
