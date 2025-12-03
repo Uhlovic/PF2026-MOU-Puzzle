@@ -1,0 +1,1045 @@
+/* Firemní fonty */
+@font-face {
+    font-family: 'Matter';
+    src: url('Matter-Regular (1).otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Matter';
+    src: url('Matter-SemiBold (2).otf') format('opentype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Matter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-image: url('BG_new.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+    overflow-x: hidden;
+    cursor: default;
+}
+
+.container {
+    max-width: 900px;
+    width: 100%;
+    position: relative;
+    z-index: 10;
+}
+
+.bottom-right-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 15px;
+    max-width: 450px;
+}
+
+.new-year-message {
+    color: #000;
+    font-size: 1.05rem;
+    font-weight: 400;
+    line-height: 1.5;
+    margin: 0;
+    text-align: left;
+}
+
+.new-year-message strong {
+    font-weight: 600;
+}
+
+.logo-bottom-right {
+    width: 200px;
+    height: auto;
+    opacity: 0.9;
+}
+
+h1 {
+    text-align: center;
+    color: white;
+    margin-bottom: 20px;
+    font-size: 2.5rem;
+    font-weight: 600;
+    font-family: 'Matter', sans-serif;
+    background: rgba(0, 0, 0, 0.25);
+    padding: 20px 40px;
+    border-radius: 15px;
+    display: inline-block;
+    width: auto;
+    backdrop-filter: blur(10px);
+}
+
+.container > h1 {
+    text-align: center;
+    width: 100%;
+}
+
+/* Tlačítka v pravém horním rohu */
+.top-right-controls {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+    display: flex;
+    gap: 10px;
+}
+
+.control-button {
+    background: linear-gradient(135deg, #f04600 0%, #ff6b35 100%);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    padding: 12px 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 25px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(240, 70, 0, 0.4);
+    transition: all 0.3s ease;
+    font-family: 'Matter', sans-serif;
+}
+
+.control-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(240, 70, 0, 0.6);
+    background: linear-gradient(135deg, #ff6b35 0%, #f04600 100%);
+}
+
+.control-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.help-icon {
+    filter: brightness(0) invert(1);
+}
+
+.game-area {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Puzzle mřížka 4x2 */
+.puzzle-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 381px);
+    grid-template-rows: repeat(2, 283px);
+    gap: 4px;
+    background: rgba(0, 0, 0, 0.25);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    transition: all 1.2s ease;
+}
+
+/* Spojený obrázek po dokončení */
+.puzzle-grid.completed {
+    gap: 0px;
+    background: transparent;
+    padding: 0;
+    box-shadow: none;
+}
+
+.puzzle-slot {
+    background: rgba(255, 255, 255, 0.3);
+    border: 2px dashed rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    transition: all 1.2s ease;
+}
+
+/* Slot po dokončení - bez rámečku */
+.puzzle-grid.completed .puzzle-slot {
+    border: none;
+    background: transparent;
+    border-radius: 0;
+}
+
+.puzzle-slot.drag-over {
+    background: rgba(255, 255, 255, 0.5);
+    border-color: #f04600;
+    transform: scale(1.05);
+}
+
+.puzzle-slot.filled {
+    border-style: solid;
+    border-color: rgba(255, 255, 255, 0.8);
+}
+
+/* Dílky puzzle */
+.puzzle-pieces {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 15px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+    overflow-x: auto;
+    max-width: 100%;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+}
+
+
+.puzzle-piece {
+    width: 190px;
+    height: 141px;
+    background-image: url('COP_new.png');
+    background-size: 762px 283px; /* Zmenšeno na 50% - 4x190px na šířku, 2x141px na výšku */
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    cursor: grab;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    user-select: none;
+    border: 2px solid white;
+    flex-shrink: 0;
+}
+
+/* Dílek ve slotu - plná velikost */
+.puzzle-slot .puzzle-piece {
+    width: 381px;
+    height: 283px;
+    background-size: 1524px 566px;
+    border: 3px solid white;
+    border-radius: 10px;
+}
+
+/* Skrytý dílek - čeká na zobrazení */
+.puzzle-piece.hidden {
+    display: none;
+}
+
+/* Animace pro nově zobrazený dílek */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.puzzle-piece.newly-visible {
+    animation: slideIn 0.4s ease-out;
+}
+
+/* Pozice jednotlivých dílků v obrázku (4 sloupce x 2 řádky) */
+/* Malé dílky v seznamu - 50% */
+/* První řádek */
+.puzzle-piece[data-piece-id="0"] {
+    background-position: 0 0;
+}
+.puzzle-piece[data-piece-id="1"] {
+    background-position: -190px 0;
+}
+.puzzle-piece[data-piece-id="2"] {
+    background-position: -381px 0;
+}
+.puzzle-piece[data-piece-id="3"] {
+    background-position: -571px 0;
+}
+/* Druhý řádek */
+.puzzle-piece[data-piece-id="4"] {
+    background-position: 0 -141px;
+}
+.puzzle-piece[data-piece-id="5"] {
+    background-position: -190px -141px;
+}
+.puzzle-piece[data-piece-id="6"] {
+    background-position: -381px -141px;
+}
+.puzzle-piece[data-piece-id="7"] {
+    background-position: -571px -141px;
+}
+
+/* Velké dílky ve slotu - 100% */
+.puzzle-slot .puzzle-piece[data-piece-id="0"] {
+    background-position: 0 0;
+}
+.puzzle-slot .puzzle-piece[data-piece-id="1"] {
+    background-position: -381px 0;
+}
+.puzzle-slot .puzzle-piece[data-piece-id="2"] {
+    background-position: -762px 0;
+}
+.puzzle-slot .puzzle-piece[data-piece-id="3"] {
+    background-position: -1143px 0;
+}
+.puzzle-slot .puzzle-piece[data-piece-id="4"] {
+    background-position: 0 -283px;
+}
+.puzzle-slot .puzzle-piece[data-piece-id="5"] {
+    background-position: -381px -283px;
+}
+.puzzle-slot .puzzle-piece[data-piece-id="6"] {
+    background-position: -762px -283px;
+}
+.puzzle-slot .puzzle-piece[data-piece-id="7"] {
+    background-position: -1143px -283px;
+}
+
+/* Hover efekt jen pro dílky mimo dokončené puzzle */
+.puzzle-pieces .puzzle-piece:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Žádný hover efekt pro dílky ve slotu nebo v dokončeném puzzle */
+.puzzle-slot .puzzle-piece:hover,
+.puzzle-grid.completed .puzzle-piece:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+.puzzle-piece:active {
+    cursor: grabbing;
+    transform: scale(0.95);
+}
+
+.puzzle-piece.dragging {
+    opacity: 0.5;
+    cursor: grabbing;
+}
+
+.puzzle-piece.placed {
+    cursor: default;
+}
+
+/* Správně umístěný dílek - oranžový rámeček */
+.puzzle-piece.correct {
+    border: 2px solid #f04600;
+    box-shadow: 0 0 10px rgba(240, 70, 0, 0.6), 0 4px 15px rgba(0, 0, 0, 0.2);
+    cursor: default;
+    transition: all 1.2s ease;
+}
+
+/* Dílek po dokončení - bez rámečku */
+.puzzle-grid.completed .puzzle-piece {
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+}
+
+/* Špatně umístěný dílek - červený rámeček */
+.puzzle-piece.incorrect {
+    border: 4px solid #ff0000;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.6), 0 4px 15px rgba(0, 0, 0, 0.2);
+    cursor: grab;
+    animation: shake 0.5s ease-in-out;
+}
+
+.puzzle-piece.incorrect:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(255, 0, 0, 0.8), 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Animace třesení pro špatně umístěný dílek */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+/* Overlay s nápovědou */
+.help-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s ease;
+    z-index: 1000;
+}
+
+.help-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.help-content {
+    text-align: left;
+    color: white;
+    padding: 40px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, rgba(240, 70, 0, 0.2), rgba(255, 107, 53, 0.3));
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(240, 70, 0, 0.5);
+    box-shadow: 0 8px 32px rgba(240, 70, 0, 0.3);
+    max-width: 600px;
+    animation: slideIn 0.8s ease-out;
+}
+
+.help-content h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    font-family: 'Matter', sans-serif;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.help-content p {
+    font-size: 1.1rem;
+    font-family: 'Matter', sans-serif;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+.help-close-button {
+    display: block;
+    margin: 0 auto;
+    background: linear-gradient(135deg, #f04600 0%, #ff6b35 100%);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    padding: 15px 35px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(240, 70, 0, 0.4);
+    transition: all 0.3s ease;
+    font-family: 'Matter', sans-serif;
+}
+
+.help-close-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(240, 70, 0, 0.6);
+    background: linear-gradient(135deg, #ff6b35 0%, #f04600 100%);
+}
+
+/* Easter egg overlay */
+.easter-egg-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 2000;
+}
+
+.easter-egg-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.easter-egg-content {
+    background: linear-gradient(135deg, rgba(240, 70, 0, 0.95), rgba(255, 107, 53, 0.95));
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    color: white;
+    max-width: 500px;
+    position: relative;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.easter-egg-content h3 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.easter-egg-subtitle {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.credits {
+    text-align: left;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.credits p {
+    margin: 12px 0;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.credits strong {
+    font-weight: 600;
+    color: #fff;
+}
+
+/* Animace dokončení */
+.completion-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s ease;
+    z-index: 1000;
+}
+
+.completion-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.completion-content {
+    text-align: center;
+    color: white;
+    padding: 40px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, rgba(240, 70, 0, 0.2), rgba(255, 107, 53, 0.3));
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(240, 70, 0, 0.5);
+    box-shadow: 0 8px 32px rgba(240, 70, 0, 0.3);
+    max-width: 600px;
+    animation: slideIn 0.8s ease-out;
+    position: relative;
+}
+
+.close-overlay-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    line-height: 1;
+    padding: 0;
+}
+
+.close-overlay-button:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: rotate(90deg);
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-100px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.greeting-text {
+    font-size: 2.5rem;
+    font-weight: 600;
+    font-family: 'Matter', sans-serif;
+    margin-bottom: 20px;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.message {
+    font-size: 1.3rem;
+    font-family: 'Matter', sans-serif;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.prevention-button {
+    display: inline-block;
+    background: linear-gradient(135deg, #f04600 0%, #ff6b35 100%);
+    color: white;
+    text-decoration: none;
+    padding: 15px 35px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border-radius: 30px;
+    box-shadow: 0 4px 15px rgba(240, 70, 0, 0.4);
+    transition: all 0.3s ease;
+    font-family: 'Matter', sans-serif;
+}
+
+.prevention-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(240, 70, 0, 0.6);
+    background: linear-gradient(135deg, #ff6b35 0%, #f04600 100%);
+}
+
+
+/* Ohňostroj efekt */
+.fireworks {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.completion-overlay.show .fireworks::before,
+.completion-overlay.show .fireworks::after {
+    content: '✨';
+    position: absolute;
+    font-size: 3rem;
+    filter: hue-rotate(20deg) saturate(1.5);
+    animation: firework 2s ease-out infinite;
+}
+
+.completion-overlay.show .fireworks::before {
+    left: 20%;
+    top: 20%;
+    animation-delay: 0.3s;
+}
+
+.completion-overlay.show .fireworks::after {
+    right: 20%;
+    top: 30%;
+    animation-delay: 0.6s;
+}
+
+@keyframes firework {
+    0% {
+        transform: translateY(0) scale(0);
+        opacity: 1;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-200px) scale(1.5);
+        opacity: 0;
+    }
+}
+
+/* Responzivní design */
+@media (max-width: 1200px) {
+    .puzzle-grid {
+        grid-template-columns: repeat(4, 240px);
+        grid-template-rows: repeat(2, 178px);
+    }
+
+    .puzzle-piece {
+        width: 120px;
+        height: 89px;
+        background-size: 480px 178px;
+    }
+
+    .puzzle-slot .puzzle-piece {
+        width: 240px !important;
+        height: 178px !important;
+        background-size: 960px 356px !important;
+    }
+
+    /* Malé dílky v seznamu - tablet */
+    .puzzle-piece[data-piece-id="1"] {
+        background-position: -120px 0;
+    }
+    .puzzle-piece[data-piece-id="2"] {
+        background-position: -240px 0;
+    }
+    .puzzle-piece[data-piece-id="3"] {
+        background-position: -360px 0;
+    }
+    .puzzle-piece[data-piece-id="4"] {
+        background-position: 0 -89px;
+    }
+    .puzzle-piece[data-piece-id="5"] {
+        background-position: -120px -89px;
+    }
+    .puzzle-piece[data-piece-id="6"] {
+        background-position: -240px -89px;
+    }
+    .puzzle-piece[data-piece-id="7"] {
+        background-position: -360px -89px;
+    }
+
+    /* Velké dílky ve slotu - tablet */
+    .puzzle-slot .puzzle-piece[data-piece-id="1"] {
+        background-position: -240px 0;
+    }
+    .puzzle-slot .puzzle-piece[data-piece-id="2"] {
+        background-position: -480px 0;
+    }
+    .puzzle-slot .puzzle-piece[data-piece-id="3"] {
+        background-position: -720px 0;
+    }
+    .puzzle-slot .puzzle-piece[data-piece-id="4"] {
+        background-position: 0 -178px;
+    }
+    .puzzle-slot .puzzle-piece[data-piece-id="5"] {
+        background-position: -240px -178px;
+    }
+    .puzzle-slot .puzzle-piece[data-piece-id="6"] {
+        background-position: -480px -178px;
+    }
+    .puzzle-slot .puzzle-piece[data-piece-id="7"] {
+        background-position: -720px -178px;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+        padding: 12px 20px;
+    }
+
+    .top-right-controls {
+        top: 10px;
+        right: 10px;
+        gap: 5px;
+    }
+
+    .control-button {
+        padding: 8px 15px;
+        font-size: 0.85rem;
+    }
+
+    .help-content {
+        padding: 25px;
+        max-width: calc(100% - 40px);
+    }
+
+    .help-content h2 {
+        font-size: 1.5rem;
+    }
+
+    .help-content p {
+        font-size: 0.95rem;
+    }
+
+    .help-close-button {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+
+    .bottom-right-container {
+        bottom: 10px;
+        right: 10px;
+        max-width: calc(100% - 20px);
+    }
+
+    .new-year-message {
+        font-size: 0.75rem;
+        padding: 10px;
+    }
+
+    .logo-bottom-right {
+        width: 100px;
+    }
+
+    .puzzle-grid {
+        grid-template-columns: repeat(4, 78px);
+        grid-template-rows: repeat(2, 58px);
+        gap: 2px;
+        padding: 8px;
+    }
+
+    .puzzle-piece {
+        width: 39px;
+        height: 29px;
+        font-size: 0.6rem;
+        background-size: 156px 58px;
+        border: 1px solid white;
+    }
+
+    .puzzle-slot .puzzle-piece {
+        width: 78px !important;
+        height: 58px !important;
+        background-size: 312px 116px !important;
+        border: 2px solid white !important;
+    }
+
+    /* Odstranit border po dokončení */
+    .puzzle-grid.completed .puzzle-piece {
+        border: none !important;
+    }
+
+    .puzzle-grid.completed {
+        gap: 0px !important;
+        padding: 0 !important;
+    }
+
+    /* Malé dílky v seznamu - mobil */
+    .puzzle-piece[data-piece-id="1"] {
+        background-position: -39px 0;
+    }
+    .puzzle-piece[data-piece-id="2"] {
+        background-position: -78px 0;
+    }
+    .puzzle-piece[data-piece-id="3"] {
+        background-position: -117px 0;
+    }
+    .puzzle-piece[data-piece-id="4"] {
+        background-position: 0 -29px;
+    }
+    .puzzle-piece[data-piece-id="5"] {
+        background-position: -39px -29px;
+    }
+    .puzzle-piece[data-piece-id="6"] {
+        background-position: -78px -29px;
+    }
+    .puzzle-piece[data-piece-id="7"] {
+        background-position: -117px -29px;
+    }
+
+    /* Velké dílky ve slotu - mobil */
+    .puzzle-slot .puzzle-piece[data-piece-id="1"] {
+        background-position: -78px 0;
+    }
+    .puzzle-slot .puzzle-piece[data-piece-id="2"] {
+        background-position: -156px 0;
+    }
+    .puzzle-slot .puzzle-piece[data-piece-id="3"] {
+        background-position: -234px 0;
+    }
+    .puzzle-slot .puzzle-piece[data-piece-id="4"] {
+        background-position: 0 -58px;
+    }
+    .puzzle-slot .puzzle-piece[data-piece-id="5"] {
+        background-position: -78px -58px;
+    }
+    .puzzle-slot .puzzle-piece[data-piece-id="6"] {
+        background-position: -156px -58px;
+    }
+    .puzzle-slot .puzzle-piece[data-piece-id="7"] {
+        background-position: -234px -58px;
+    }
+
+    .greeting-text {
+        font-size: 1.8rem;
+    }
+
+    .message {
+        font-size: 1.1rem;
+    }
+
+    .puzzle-pieces {
+        padding: 10px;
+        gap: 10px;
+    }
+
+    .completion-content {
+        padding: 20px;
+        margin: 0 20px;
+        max-width: calc(100% - 40px);
+    }
+
+    .greeting-text {
+        font-size: 1.5rem !important;
+    }
+
+    .message {
+        font-size: 0.95rem !important;
+    }
+
+    .prevention-button {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+
+    .easter-egg-content {
+        padding: 25px;
+        margin: 0 20px;
+        max-width: calc(100% - 40px);
+    }
+
+    .easter-egg-content h3 {
+        font-size: 1.5rem;
+    }
+
+    .credits p {
+        font-size: 0.9rem;
+    }
+}
+
+/* Extra malé mobily */
+@media (max-width: 400px) {
+    h1 {
+        font-size: 1.2rem;
+        padding: 10px 15px;
+    }
+
+    .puzzle-grid {
+        grid-template-columns: repeat(4, 72px);
+        grid-template-rows: repeat(2, 54px);
+        gap: 2px;
+        padding: 6px;
+    }
+
+    .puzzle-piece {
+        width: 36px;
+        height: 27px;
+        background-size: 144px 54px;
+        border: 1px solid white;
+    }
+
+    .puzzle-slot .puzzle-piece {
+        width: 72px !important;
+        height: 54px !important;
+        background-size: 288px 108px !important;
+        border: 2px solid white !important;
+    }
+
+    /* Odstranit border po dokončení */
+    .puzzle-grid.completed .puzzle-piece {
+        border: none !important;
+    }
+
+    .puzzle-grid.completed {
+        gap: 0px !important;
+        padding: 0 !important;
+    }
+
+    /* Malé dílky v seznamu - extra malé mobily */
+    .puzzle-piece[data-piece-id="1"] {
+        background-position: -36px 0;
+    }
+    .puzzle-piece[data-piece-id="2"] {
+        background-position: -72px 0;
+    }
+    .puzzle-piece[data-piece-id="3"] {
+        background-position: -108px 0;
+    }
+    .puzzle-piece[data-piece-id="4"] {
+        background-position: 0 -27px;
+    }
+    .puzzle-piece[data-piece-id="5"] {
+        background-position: -36px -27px;
+    }
+    .puzzle-piece[data-piece-id="6"] {
+        background-position: -72px -27px;
+    }
+    .puzzle-piece[data-piece-id="7"] {
+        background-position: -108px -27px;
+    }
+
+    /* Velké dílky ve slotu - extra malé mobily */
+    .puzzle-slot .puzzle-piece[data-piece-id="1"] {
+        background-position: -72px 0;
+    }
+    .puzzle-slot .puzzle-piece[data-piece-id="2"] {
+        background-position: -144px 0;
+    }
+    .puzzle-slot .puzzle-piece[data-piece-id="3"] {
+        background-position: -216px 0;
+    }
+    .puzzle-slot .puzzle-piece[data-piece-id="4"] {
+        background-position: 0 -54px;
+    }
+    .puzzle-slot .puzzle-piece[data-piece-id="5"] {
+        background-position: -72px -54px;
+    }
+    .puzzle-slot .puzzle-piece[data-piece-id="6"] {
+        background-position: -144px -54px;
+    }
+    .puzzle-slot .puzzle-piece[data-piece-id="7"] {
+        background-position: -216px -54px;
+    }
+
+    .control-button {
+        padding: 6px 12px;
+        font-size: 0.75rem;
+    }
+
+    .new-year-message {
+        font-size: 0.65rem;
+    }
+
+    .logo-bottom-right {
+        width: 80px;
+    }
+
+    .completion-content {
+        padding: 15px;
+        margin: 0 15px;
+        max-width: calc(100% - 30px);
+    }
+
+    .greeting-text {
+        font-size: 1.2rem !important;
+    }
+
+    .message {
+        font-size: 0.85rem !important;
+    }
+
+    .prevention-button {
+        padding: 8px 16px;
+        font-size: 0.8rem;
+    }
+
+    .easter-egg-content {
+        padding: 20px;
+        margin: 0 15px;
+        max-width: calc(100% - 30px);
+    }
+
+    .easter-egg-content h3 {
+        font-size: 1.3rem;
+    }
+
+    .credits p {
+        font-size: 0.8rem;
+    }
+}

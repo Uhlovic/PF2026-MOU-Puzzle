@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PF 2026 - Novoroční puzzle</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Tlačítka v pravém horním rohu -->
+    <div class="top-right-controls">
+        <button id="musicBtn" class="control-button">🔇 Hudba</button>
+        <button id="helpBtn" class="control-button"><span class="help-icon">❓</span> Nápověda</button>
+        <button id="resetBtn" class="control-button">🔄 Začít znovu</button>
+    </div>
+
+    <div class="container">
+        <h1>Složte si novoroční přání MOÚ</h1>
+
+        <!-- Herní oblast -->
+        <div class="game-area">
+            <!-- Puzzle mřížka 4x2 -->
+            <div class="puzzle-grid" id="puzzleGrid">
+                <div class="puzzle-slot" data-position="0"></div>
+                <div class="puzzle-slot" data-position="1"></div>
+                <div class="puzzle-slot" data-position="2"></div>
+                <div class="puzzle-slot" data-position="3"></div>
+                <div class="puzzle-slot" data-position="4"></div>
+                <div class="puzzle-slot" data-position="5"></div>
+                <div class="puzzle-slot" data-position="6"></div>
+                <div class="puzzle-slot" data-position="7"></div>
+            </div>
+
+            <!-- Dílky puzzle (zamíchané) -->
+            <div class="puzzle-pieces" id="puzzlePieces">
+                <div class="puzzle-piece" draggable="true" data-correct-position="0" data-piece-id="0"></div>
+                <div class="puzzle-piece" draggable="true" data-correct-position="1" data-piece-id="1"></div>
+                <div class="puzzle-piece" draggable="true" data-correct-position="2" data-piece-id="2"></div>
+                <div class="puzzle-piece" draggable="true" data-correct-position="3" data-piece-id="3"></div>
+                <div class="puzzle-piece" draggable="true" data-correct-position="4" data-piece-id="4"></div>
+                <div class="puzzle-piece" draggable="true" data-correct-position="5" data-piece-id="5"></div>
+                <div class="puzzle-piece" draggable="true" data-correct-position="6" data-piece-id="6"></div>
+                <div class="puzzle-piece" draggable="true" data-correct-position="7" data-piece-id="7"></div>
+            </div>
+        </div>
+
+        <!-- Overlay s nápovědou -->
+        <div class="help-overlay" id="helpOverlay">
+            <div class="help-content">
+                <h2>Jak hrát</h2>
+                <p>
+                    🧩 <strong>Cíl hry:</strong> Složte celý obrázek přesunutím všech dílků puzzle na správná místa.<br><br>
+
+                    🖱️ <strong>Jak hrát:</strong> Táhněte dílky myší (drag & drop) z dolní části do herní mřížky nahoře.<br><br>
+
+                    ✅ <strong>Správný dílek:</strong> Když umístíte dílek správně, dostane oranžový rámeček a objeví se další dílek ke složení.<br><br>
+
+                    ❌ <strong>Špatný dílek:</strong> Když umístíte dílek špatně, dostane červený rámeček a můžete ho přemístit na jiné místo.
+                </p>
+                <button id="closeHelpBtn" class="help-close-button">Rozumím, začít skládat!</button>
+            </div>
+        </div>
+
+        <!-- Easter egg overlay -->
+        <div class="easter-egg-overlay" id="easterEggOverlay">
+            <div class="easter-egg-content">
+                <button class="close-overlay-button" id="closeEasterEggBtn">✕</button>
+                <h3>Našli jste nás! 👋</h3>
+                <p class="easter-egg-subtitle">Tvůrci přání:</p>
+                <div class="credits">
+                    <p><strong>Naprogramoval:</strong> Petr Uhlíř</p>
+                    <p><strong>Grafická úprava:</strong> Sára Rašovská</p>
+                    <p><strong>Drobnohled:</strong> Lucie Tribulová</p>
+                    <p><strong>Odborné vedení:</strong> Klára Jirkovská</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Překryvná vrstva s přáním (skrytá) -->
+        <div class="completion-overlay" id="completionOverlay">
+            <div class="completion-content">
+                <button class="close-overlay-button" id="closeCompletionBtn">✕</button>
+                <div class="fireworks"></div>
+                <h2 class="greeting-text">🎊 Gratulujeme! 🎊</h2>
+                <p class="message">
+                    Prevence zachraňuje životy. V roce 2026 nezapomeňte na pravidelné preventivní prohlídky.
+                </p>
+                <a href="https://www.mou.cz/vse-o-prevenci/t1309" target="_blank" class="prevention-button">Více o prevenci</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Logo a přání v pravém dolním rohu -->
+    <div class="bottom-right-container">
+        <p class="new-year-message">
+            Prevence je jako puzzle – tvoří ji mnoho malých,<br>
+            ale důležitých kroků.<br>
+            S radostí přidáváme další dílek: nový&nbsp;pavilon&nbsp;Centra&nbsp;onkologické&nbsp;prevence.<br>
+            Děkujeme, že jste součástí našeho příběhu.<br>
+            <strong>Přejeme pevné zdraví a úspěšný rok 2026.</strong>
+        </p>
+        <img src="logo.svg" alt="MOÚ Logo" class="logo-bottom-right">
+    </div>
+
+    <!-- Hudba na pozadí -->
+    <audio id="backgroundMusic" loop>
+        <source src="Warm December Glow.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
