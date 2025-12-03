@@ -321,6 +321,7 @@ function resetGame() {
 let touchedPiece = null;
 let touchClone = null;
 let lastTouchedSlot = null;
+let touchOffset = { x: 0, y: 0 };
 
 function handleTouchStart(e) {
     // Zabránit přetažení správně umístěných dílků
@@ -336,22 +337,28 @@ function handleTouchStart(e) {
     touchedPiece = this;
     this.classList.add('dragging');
 
+    // Uložit velikost dílku pro správné centrování
+    const pieceWidth = this.offsetWidth;
+    const pieceHeight = this.offsetHeight;
+    touchOffset.x = pieceWidth / 2;
+    touchOffset.y = pieceHeight / 2;
+
     // Vytvořit klon pro vizuální feedback
     touchClone = this.cloneNode(true);
     touchClone.style.position = 'fixed';
     touchClone.style.zIndex = '10000';
     touchClone.style.pointerEvents = 'none';
     touchClone.style.opacity = '0.8';
-    touchClone.style.width = this.offsetWidth + 'px';
-    touchClone.style.height = this.offsetHeight + 'px';
+    touchClone.style.width = pieceWidth + 'px';
+    touchClone.style.height = pieceHeight + 'px';
     touchClone.style.willChange = 'transform';
     touchClone.style.transition = 'none';
+    touchClone.style.left = '0';
+    touchClone.style.top = '0';
     document.body.appendChild(touchClone);
 
     const touch = e.touches[0];
-    touchClone.style.transform = `translate(${touch.clientX - this.offsetWidth / 2}px, ${touch.clientY - this.offsetHeight / 2}px)`;
-    touchClone.style.left = '0';
-    touchClone.style.top = '0';
+    touchClone.style.transform = `translate(${touch.clientX - touchOffset.x}px, ${touch.clientY - touchOffset.y}px)`;
 }
 
 function handleTouchMove(e) {
@@ -362,7 +369,7 @@ function handleTouchMove(e) {
 
     // Posunout klon using transform for better performance
     if (touchClone) {
-        touchClone.style.transform = `translate(${touch.clientX - touchClone.offsetWidth / 2}px, ${touch.clientY - touchClone.offsetHeight / 2}px)`;
+        touchClone.style.transform = `translate(${touch.clientX - touchOffset.x}px, ${touch.clientY - touchOffset.y}px)`;
     }
 
     // Najít slot pod prstem
