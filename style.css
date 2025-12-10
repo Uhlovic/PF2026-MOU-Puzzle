@@ -59,7 +59,7 @@ body {
 .bottom-right-container {
     position: fixed;
     bottom: 30px;
-    right: 20px;
+    right: 50px;
     z-index: 100;
     display: flex;
     flex-direction: column;
@@ -70,7 +70,7 @@ body {
 
 .new-year-message {
     color: #000;
-    font-size: 0.95rem;
+    font-size: 1.25rem;
     font-weight: 400;
     line-height: 1.4;
     margin: 0;
@@ -601,6 +601,9 @@ h1 {
     transition: all 0.3s ease;
     line-height: 1;
     padding: 0;
+    z-index: 10001;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .close-overlay-button:hover {
@@ -641,6 +644,14 @@ h1 {
     font-family: 'Matter', sans-serif;
     line-height: 1.6;
     margin-bottom: 30px;
+}
+
+.mobile-message {
+    display: none;
+}
+
+.desktop-message {
+    display: block;
 }
 
 .prevention-button {
@@ -989,6 +1000,7 @@ h1 {
         bottom: 80px;
         right: 5px;
         max-width: 200px;
+        display: none;
     }
 
     .new-year-message {
@@ -998,24 +1010,24 @@ h1 {
     }
 
     .puzzle-grid {
-        grid-template-columns: repeat(4, 70px);
-        grid-template-rows: repeat(2, 52px);
+        grid-template-columns: repeat(4, 85px);
+        grid-template-rows: repeat(2, 63px);
         gap: 2px;
-        padding: 6px;
+        padding: 8px;
     }
 
     .puzzle-piece {
-        width: 52px;
-        height: 39px;
+        width: 63px;
+        height: 47px;
         font-size: 0.6rem;
-        background-size: 208px 78px;
+        background-size: 252px 94px;
         border: 1px solid white;
     }
 
     .puzzle-slot .puzzle-piece {
-        width: 70px !important;
-        height: 52px !important;
-        background-size: 280px 104px !important;
+        width: 85px !important;
+        height: 63px !important;
+        background-size: 340px 126px !important;
         border: 2px solid white !important;
     }
 
@@ -1031,48 +1043,48 @@ h1 {
 
     /* Malé dílky v seznamu - mobil */
     .puzzle-piece[data-piece-id="1"] {
-        background-position: -52px 0;
+        background-position: -63px 0;
     }
     .puzzle-piece[data-piece-id="2"] {
-        background-position: -104px 0;
+        background-position: -126px 0;
     }
     .puzzle-piece[data-piece-id="3"] {
-        background-position: -156px 0;
+        background-position: -189px 0;
     }
     .puzzle-piece[data-piece-id="4"] {
-        background-position: 0 -39px;
+        background-position: 0 -47px;
     }
     .puzzle-piece[data-piece-id="5"] {
-        background-position: -52px -39px;
+        background-position: -63px -47px;
     }
     .puzzle-piece[data-piece-id="6"] {
-        background-position: -104px -39px;
+        background-position: -126px -47px;
     }
     .puzzle-piece[data-piece-id="7"] {
-        background-position: -156px -39px;
+        background-position: -189px -47px;
     }
 
     /* Velké dílky ve slotu - mobil */
     .puzzle-slot .puzzle-piece[data-piece-id="1"] {
-        background-position: -70px 0;
+        background-position: -85px 0;
     }
     .puzzle-slot .puzzle-piece[data-piece-id="2"] {
-        background-position: -140px 0;
+        background-position: -170px 0;
     }
     .puzzle-slot .puzzle-piece[data-piece-id="3"] {
-        background-position: -210px 0;
+        background-position: -255px 0;
     }
     .puzzle-slot .puzzle-piece[data-piece-id="4"] {
-        background-position: 0 -52px;
+        background-position: 0 -63px;
     }
     .puzzle-slot .puzzle-piece[data-piece-id="5"] {
-        background-position: -70px -52px;
+        background-position: -85px -63px;
     }
     .puzzle-slot .puzzle-piece[data-piece-id="6"] {
-        background-position: -140px -52px;
+        background-position: -170px -63px;
     }
     .puzzle-slot .puzzle-piece[data-piece-id="7"] {
-        background-position: -210px -52px;
+        background-position: -255px -63px;
     }
 
     .greeting-text {
@@ -1083,16 +1095,37 @@ h1 {
         font-size: 1.1rem;
     }
 
+    .mobile-message {
+        display: block !important;
+    }
+
+    .desktop-message {
+        display: none !important;
+    }
+
     .puzzle-pieces {
         padding: 15px;
         gap: 15px;
         min-height: 100px;
+        flex-direction: column;
+        align-items: center;
     }
 
     .completion-content {
         padding: 20px;
         margin: 0 20px;
         max-width: calc(100% - 40px);
+    }
+
+    .close-overlay-button {
+        width: 45px;
+        height: 45px;
+        font-size: 1.8rem;
+        top: 10px;
+        right: 10px;
+        z-index: 10001;
+        background: rgba(255, 255, 255, 0.3);
+        border: 2px solid rgba(255, 255, 255, 0.8);
     }
 
     .greeting-text {
@@ -1224,6 +1257,17 @@ h1 {
         padding: 15px;
         margin: 0 15px;
         max-width: calc(100% - 30px);
+    }
+
+    .close-overlay-button {
+        width: 40px;
+        height: 40px;
+        font-size: 1.6rem;
+        top: 8px;
+        right: 8px;
+        z-index: 10001;
+        background: rgba(255, 255, 255, 0.3);
+        border: 2px solid rgba(255, 255, 255, 0.8);
     }
 
     .greeting-text {

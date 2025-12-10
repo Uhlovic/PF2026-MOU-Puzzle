@@ -237,7 +237,15 @@ completionOverlay.addEventListener('click', (e) => {
 
 // Zavřít overlay křížkem
 const closeCompletionBtn = document.getElementById('closeCompletionBtn');
-closeCompletionBtn.addEventListener('click', () => {
+closeCompletionBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    completionOverlay.classList.remove('show');
+});
+
+// Přidat touch support pro mobily
+closeCompletionBtn.addEventListener('touchend', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
     completionOverlay.classList.remove('show');
 });
 
